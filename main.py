@@ -9,11 +9,13 @@ indeed_soup = BeautifulSoup(indeed_result.text, "html.parser")
 
 pagination = indeed_soup.find("ul", {"class": "pagination-list"})
 
-pages = pagination.find_all('span')
+links = pagination.find_all('span')
 
-spans = []
+pages = []
 
-for page in pages:
-    spans.append(page)
+for link in links[:-2]:
+    pages.append(int(link.string))
 
-spans = spans[:-2]
+
+max_page = pages[-1]
+print(max_page)
